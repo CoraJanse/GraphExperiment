@@ -1,4 +1,4 @@
-package cx.samplecode.graphexperiment;
+package cx.samplecode.graphexperiment.application;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,5 +9,4 @@ class GraphExperimentRunnerTest {
     void testReadGraphFromJson() {
         Assertions.fail("This function is not yet implemented");
     }
-
 }
