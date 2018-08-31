@@ -1,12 +1,9 @@
 package cx.samplecode.graphexperiment.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Metric {
 
     private String name;
-    private boolean isPercentage = false;
+    private Double value;
 
     public String getName() {
         return name;
@@ -16,12 +13,12 @@ public class Metric {
         this.name = name;
     }
 
-    public boolean isPercentage() {
-        return isPercentage;
+    public Double getValue() {
+        return value;
     }
 
-    public void setPercentage(boolean percentage) {
-        isPercentage = percentage;
+    public void setValue(Double value) {
+        this.value = value;
     }
 
     @Override

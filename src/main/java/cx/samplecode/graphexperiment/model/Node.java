@@ -14,7 +14,7 @@ public class Node {
     private Integer outEdgesCount;
     private Integer startline;
     private Integer endline;
-    private Map<String, Map<Metric, Number>> metricPerLanguageMap = new HashMap<>();
+    private Map<String, Map<String, Double>> metrics = new HashMap<>();
 
     public String getName() {
         return name;
@@ -64,12 +64,12 @@ public class Node {
         this.endline = endline;
     }
 
-    public Map<String, Map<Metric, Number>> getMetricPerLanguageMap() {
-        return metricPerLanguageMap;
+    public Map<String, Map<String, Double>> getMetrics() {
+        return metrics;
     }
 
-    public void setMetricPerLanguageMap(Map<String, Map<Metric, Number>> metricPerLanguageMap) {
-        this.metricPerLanguageMap = metricPerLanguageMap;
+    public void setMetrics(Map<String, Map<String, Double>> metrics) {
+        this.metrics = metrics;
     }
 
     @Override
