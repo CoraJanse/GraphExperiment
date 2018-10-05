@@ -2,6 +2,8 @@ package cx.samplecode.graphexperiment.converters;
 
 import cx.samplecode.graphexperiment.model.Node;
 import cx.samplecode.graphexperiment.model.Snapshot;
+import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
+import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -12,6 +14,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class JsonToGraphConverterTest {
+
+    @Test
+    void testImportJsonToGraph() {
+        String jsonString = getJsonIncludingNodesAndEdges();
+
+        JsonToGraphConverter converter = new JsonToGraphConverter();
+
+        Optional<TinkerGraph> optionalTinkerGraph = converter.readJsonToTinkergraph(jsonString);
+        assertTrue(optionalTinkerGraph.isPresent());
+
+        TinkerGraph tinkergraph = optionalTinkerGraph.get();
+        assertEquals(2, IteratorUtils.count(tinkergraph.vertices()));
+        assertEquals(1, IteratorUtils.count(tinkergraph.edges()));
+    }
 
     @Test
     void testReadSnapshotFromSimpleJSONString() {

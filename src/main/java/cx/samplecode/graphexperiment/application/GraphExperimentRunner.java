@@ -1,9 +1,9 @@
 package cx.samplecode.graphexperiment.application;
 
 import cx.samplecode.graphexperiment.converters.JsonToGraphConverter;
-import cx.samplecode.graphexperiment.model.Snapshot;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,13 +25,13 @@ public class GraphExperimentRunner {
                 FileInputStream inputStream = new FileInputStream(jsonPath);
                 jsonString = IOUtils.toString(inputStream, Charset.defaultCharset());
 
-                Optional<Snapshot> optionalSnapshot = new JsonToGraphConverter().readSnapshotFromJsonString(jsonString);
+                Optional<TinkerGraph> optionalTinkerGraph = new JsonToGraphConverter().readJsonToTinkergraph(jsonString);
 
-                if (optionalSnapshot.isPresent()) {
-                    LOG.info("Succesfully imported snapshot: " + optionalSnapshot.get());
+                if (optionalTinkerGraph.isPresent()) {
+                    LOG.info("Succesfully converted json to TinkerGraph");
                 }
                 else {
-                    LOG.info("No snapshot found in json import file " + jsonPath);
+                    LOG.error("Conversion of json failed for " + jsonPath);
                 }
             } catch (IOException e) {
                 LOG.error("Error reading json import file " + jsonPath);
